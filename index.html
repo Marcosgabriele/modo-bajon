@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modo Bajón</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FDBECF;
+      color: #C45775;
+    }
+
+    header {
+      background-color: #F487AE;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    header h1 {
+      font-family: 'Lobster', cursive;
+      color: white;
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .section {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .product {
+      margin-bottom: 2rem;
+    }
+
+    .product img {
+      width: 300px;
+      border-radius: 20px;
+      margin: 1rem;
+      box-shadow: 0 0 10px #C45775;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .controls button {
+      background-color: #C45775;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .controls span {
+      font-size: 1.2rem;
+      width: 30px;
+      display: inline-block;
+    }
+
+    .btn {
+      background-color: #C45775;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #cart {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 10px #C45775;
+    }
+
+    footer {
+      background-color: #F487AE;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-decoration: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 style="text-shadow: 2px 2px #000;">Modo Bajón</h1>
+    <p>Tu antojo dulce en potecito 🍫</p>
+  </header>
+
+  <div class="section">
+    <div class="product">
+      <h2>Tiramisú - $3.000</h2>
+      <p>Vainillas, mascarpone, huevos, azúcar, crema.</p>
+      <img src="https://i.postimg.cc/hvBD4xTG/tirmiu.jpg" alt="Tiramisú">
+      <div class="controls">
+        <button onclick="updateQty('tir', -1)">-</button>
+        <span id="tir-qty">0</span>
+        <button onclick="updateQty('tir', 1)">+</button>
+      </div>
+      <button class="btn" onclick="addToCart('Tiramisú', 3000, 'tir')">Agregar al carrito</button>
+    </div>
+
+    <div class="product">
+      <h2>Chocotorta - $3.000</h2>
+      <p>Chocolinas, dulce de leche, queso crema.</p>
+      <img src="https://i.postimg.cc/PrfH6dM0/Imagen-de-Whats-App-2025-06-22-a-las-13-06-28-8271a5ca.jpg" alt="Chocotorta">
+      <div class="controls">
+        <button onclick="updateQty('cho', -1)">-</button>
+        <span id="cho-qty">0</span>
+        <button onclick="updateQty('cho', 1)">+</button>
+      </div>
+      <button class="btn" onclick="addToCart('Chocotorta', 3000, 'cho')">Agregar al carrito</button>
+    </div>
+
+    <div id="cart">
+      <h3>🛒 Carrito</h3>
+      <p id="cart-items">Tu carrito está vacío.</p>
+      <p id="cart-total"></p>
+      <a id="cart-link" href="#" target="_blank" class="btn" style="display:none;">Enviar pedido por WhatsApp</a>
+    </div>
+  </div>
+
+  <footer>
+    Gracias por tu compra 💕<br>
+    © 2025 Modo Bajón
+
+    <div style="margin-top: 1rem;">
+      <a href="https://www.instagram.com/modobajon.official?igsh=eWp6dmxob2dsZ252" target="_blank" style="margin-right: 1rem;"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram" style="width: 30px;"></a>
+      <a href="https://www.tiktok.com/@modbajon?is_from_webapp=1&sender_device=pc" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/tiktok--v1.png" alt="TikTok" style="width: 30px;"></a>
+    </div>
+    </footer>
+
+
+  <a class="whatsapp-float" href="https://wa.me/5491172195274?text=Hola%2C%20tengo%20una%20consulta%20sobre%20los%20postres%20de%20Modo%20Baj%C3%B3n" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" style="width: 40px; height: 40px;"></a>
+
+  
+  <script>
+    let cart = {};
+    let total = 0;
+
+    function updateQty(type, change) {
+      const qtySpan = document.getElementById(`${type}-qty`);
+      let qty = parseInt(qtySpan.innerText);
+      qty = Math.max(0, qty + change);
+      qtySpan.innerText = qty;
+    }
+
+    function addToCart(product, price, type) {
+      const qty = parseInt(document.getElementById(`${type}-qty`).innerText);
+      if (qty > 0) {
+        cart[product] = (cart[product] || 0) + qty;
+        updateCart();
+        document.getElementById(`${type}-qty`).innerText = 0;
+      }
+    }
+
+    function updateCart() {
+      let text = '';
+      total = 0;
+      let message = 'Hola, quiero pedir:';
+      for (let item in cart) {
+        let subtotal = cart[item] * 3000;
+        text += `${item}: ${cart[item]} unidad(es)<br>`;
+        message += `\n- ${cart[item]} ${item}`;
+        total += subtotal;
+      }
+      document.getElementById("cart-items").innerHTML = text || "Tu carrito está vacío.";
+      document.getElementById("cart-total").innerHTML = total ? `Total: $${total}` : "";
+
+      const link = document.getElementById("cart-link");
+      if (total > 0) {
+        link.style.display = "inline-block";
+        link.href = "https://wa.me/5491172195274?text=" + encodeURIComponent(message + `\nTotal: $${total}`);
+      } else {
+        link.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
